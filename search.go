@@ -144,6 +144,10 @@ func main() {
 	maxReadersPtr := flag.Int("m", 1, "maximum number of readers at once")
 	searchTermPtr := flag.String("s", "", "term(s) to search for")
 	flag.Parse()
+	if len(flag.Args()) == 0 {
+		flag.Usage()
+		os.Exit(0)
+	}
 	searchTerms := append(flag.Args(), *searchTermPtr)
 
 	results := searchFile(*filenamePtr, *maxReadersPtr, searchTerms)
